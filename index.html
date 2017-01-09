@@ -1,0 +1,37 @@
+---
+layout: default
+langcode: ru_RU
+title: Какие торренты скачивали с IP-адресов органов государственной власти?
+description: Список скачанных торрентов с IP-адресов российских властей
+---
+{% for org in site.data.rugovdownloads.data %}
+  {% capture difference %} {{ org[1] | size | minus:1 }} {% endcapture %}
+  {% unless difference contains '-' %}
+    <h4>Скачано из {{ org[0] }}</h4>
+    <table class="table table-striped table-responsive">
+      <thead class="thead-default">
+        <tr>
+          <th>Начало</th>
+          <th>Конец</th>
+          <th>Категория</th>
+          <th>Название</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for value in org[1] %}
+          <tr>
+            <td>{{ value.begin }}</td>
+            <td>{{ value.end }}</td>
+            <td>{{ value.category }}</td>
+            <td><a href="{{ value.link }}" target="_blank">{{ value.title}}</a></td>
+            <td>{{ value.ip }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endunless %}
+{% endfor %}
+<div class="row">
+  <div class="col-xs-12 text-muted text-xs-right small">Последнее обновление: {{ site.data.rugovdownloads.updated }}</div>
+</div>

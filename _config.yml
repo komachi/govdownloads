@@ -1,0 +1,14 @@
+url: "https://nesterov.pw/govdownloads"
+
+type: 'article'
+twitter: '@AntNesterov'
+twitter_creator: '@AntNesterov'
+github: https://github.com/komachi/govdownloads
+
+# Build settings
+markdown: kramdown
+exclude:
+  - .babelrc
+  - download.js
+  - package.json
+  - node_modules

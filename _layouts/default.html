@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="{{ page.langcode | replace: '_', '-' }}" prefix="og: http://ogp.me/ns#">
+  <head profile="http://microformats.org/profile/rel-license">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css" integrity="sha256-LB8XW7EkyeYr9VwAm82rQ9EaZsiUpOjtIfejQmNVqz0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link href="css/main.css" rel="stylesheet">
+    <link href="{{ site.url | append: page.url | uri_escape }}" rel="cannonical" />
+    {% for language in site.languages %}
+      <link rel="alternate" hreflang="{{ language.code | replace: '_', '-' }}" href="{{ site.url | append: language.link }}" />
+    {% endfor %}
+    <meta name="description" content="{{ page.description }}">
+    <meta property="og:description" content="{{ page.description }}" />
+    <meta property="og:url" content="{{ site.url | append: page.url | uri_escape }}" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:type" content="{{ site.type }}" />
+    {% if site.site_name %}
+      <meta property="og:site_name" content="{{ site.site_name }}" />
+    {% endif %}
+    <meta property="og:locale" content="{{ page.langcode }}" />
+    {% for language in site.languages %}
+      <meta property="og:locale:alternate" content="{{ language.code }}" />
+    {% endfor %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ site.twitter }}" />
+    <meta name="twitter:creator" content="{{ site.twitter_creator }}" />
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+       <h1 class="display-3">{{ page.title }}</h1>
+       <p class="lead">Данные взяты с <a href="https://iknowwhatyoudownload.com" target="_blank">iknowwhatyoudownload.com</a>. <a href="{{ site.github }}">Исходный код</a>.</p>
+     </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <article class="col-xs-12 h-entry">
+          {{ content }}
+        </article>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6 offset-md-3 text-xs-center h4 icons">
+          <div class="row">
+            <div class="col-xs">
+              {% if page.hashtag %}
+                <a href="https://facebook.com/sharer.php?u={{ site.url | append: page.url | uri_escape }}&t={{ page.title | append: ' #' | append: page.hashtag | uri_escape }}" title="Facebook" target="_blank">
+              {% else %}
+                <a href="https://facebook.com/sharer.php?u={{ site.url | append: page.url | uri_escape }}&t={{ page.title | uri_escape }}" title="Facebook" target="_blank">
+              {% endif %}
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="col-xs">
+              {% if page.hashtag %}
+                <a href="https://twitter.com/share?url={{ site.url | append: page.url | uri_escape }}&text={{ page.title | append: ' #' | append: page.hashtag | uri_escape }}" title="Twitter" target="_blank">
+              {% else %}
+                <a href="https://twitter.com/share?url={{ site.url | append: page.url | uri_escape }}&text={{ page.title | uri_escape }}" title="Twitter" target="_blank">
+              {% endif %}
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="col-xs">
+              {% if page.hashtag %}
+                <a href="http://vk.com/share.php?url={{ site.url | append: page.url | uri_escape }}&title={{ page.title | append: ' #' | append: page.hashtag | uri_escape }}" title="VK" target="_blank">
+              {% else %}
+                <a href="http://vk.com/share.php?url={{ site.url | append: page.url | uri_escape }}&title={{ page.title | uri_escape }}" title="VK" target="_blank">
+              {% endif %}
+                <i class="fa fa-vk" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="col-xs">
+              <a href="http://reddit.com/submit?url={{ site.url | append: page.url | uri_escape }}&title={{ page.title | uri_escape }}" title="Reddit" target="_blank">
+                <i class="fa fa-reddit" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="col-xs">
+              <a href="http://news.ycombinator.com/submitlink?u={{ site.url | append: page.url | uri_escape }}&t={{ page.title | uri_escape }}" title="Hacker News" target="_blank">
+                <i class="fa fa-hacker-news" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="col-xs">
+              <a href="https://plus.google.com/share?url={{ site.url | append: page.url | uri_escape }}" title="Google Plus" target="_blank">
+                <i class="fa fa-google-plus" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="col-xs">
+              <a href="http://pinterest.com/pin/create/link/?url={{ site.url | append: page.url | uri_escape }}&description={{ page.title | uri_escape }}" title="Pinterest" target="_blank">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="row">
+        <div class="col-xs-12 text-xs-center text-muted">
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license" class="text-muted"><i class="fa fa-creative-commons" aria-hidden="true"></i> CC BY-SA 4.0</a>, <a href="https://nesterov.pw" rel="author" class="text-muted">Anton Nesterov</a>. <a href="{{ site.github }}" target="_blank" class="text-muted"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a>.
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
